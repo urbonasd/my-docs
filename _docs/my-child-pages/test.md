@@ -1,6 +1,6 @@
 ---
 title: Test
-parent: My docs
+parent: Mano dokumentacija
 layout: default
 nav_order: 1
 ---
