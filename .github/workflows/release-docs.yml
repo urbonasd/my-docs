@@ -65,4 +65,4 @@ jobs:
             🗂️ View the documentation at:
             👉 https://<user_name>.github.io/my-docs/$/
         env:
-          GITHUB_TOKEN: $
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
