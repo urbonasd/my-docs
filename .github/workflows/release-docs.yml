@@ -7,10 +7,6 @@ on:
         description: 'Release folder (e.g., doc-0.0.1)'
         required: true
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.inputs.version }}-${{ github.run_id }}
-  cancel-in-progress: true
-
 permissions:
   contents: write
 
@@ -38,26 +34,16 @@ jobs:
           jekyll build --config _config.yml,_config_theme.yml,_config_release.yml -d _site
           touch _site/.nojekyll
 
-      - name: Prepare redirect and versioned docs for deployment
+      - name: Add root redirect to built site
         run: |
-          # Create redirect index.html
-          mkdir -p _site_root
-          echo '<meta http-equiv="refresh" content="0; url=./${{ github.event.inputs.version }}/">' > _site_root/index.html
-          # Move versioned docs to subdirectory
-          mkdir -p _site_root/${{ github.event.inputs.version }}
-          mv _site/* _site_root/${{ github.event.inputs.version }}/
-          # Preserve /preview/ if it exists
-          if [ -d "_site_root/preview" ]; then
-            mv _site_root/preview _site_root/preview_temp
-            mv _site_root/preview_temp _site_root/preview
-          fi
+          echo '<meta http-equiv="refresh" content="0; url=./${{ github.event.inputs.version }}/">' > _site/index.html
 
-      - name: Deploy to gh-pages
+      - name: Deploy full site with redirect in one commit
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: ./_site_root
+          publish_dir: ./_site
           destination_dir: .
           keep_files: true
 
@@ -68,6 +54,6 @@ jobs:
           name: Docs ${{ github.event.inputs.version }}
           body: |
             🗂️ View the documentation at:
-            👉 https://${{ github.repository_owner }}.github.io/my-docs/${{ github.event.inputs.version }}/
+            👉 https://raimundasr.github.io/my-docs/${{ github.event.inputs.version }}/
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
