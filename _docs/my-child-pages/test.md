@@ -1,7 +1,6 @@
 ---
 title: Test
 layout: default
-permalink: /docs/my-child-pages/test/
 ---
 # This is a test page
 
