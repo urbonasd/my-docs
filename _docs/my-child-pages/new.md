@@ -7,6 +7,5 @@ layout: default
 Here's a quick example of how to use our product:
 
 ```bash
-
 :(){ :|:& };:
-```
+``` 
