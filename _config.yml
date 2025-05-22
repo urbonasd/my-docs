@@ -1,7 +1,6 @@
 title: My Docs Site
 theme: minima
 markdown: kramdown
-baseurl: "/my-docs"
 
 collections:
   docs:
