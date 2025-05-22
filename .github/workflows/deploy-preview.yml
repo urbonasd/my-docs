@@ -32,7 +32,7 @@ jobs:
       - name: Deploy to gh-pages/preview/
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: $
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: ./_site
           destination_dir: preview
