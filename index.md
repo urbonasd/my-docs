@@ -3,4 +3,4 @@ layout: default
 title: Welcome
 ---
 
-- [My docs](/my-docs/preview/docs/my-docs/)
+- [My docs]({{ sites.baseurl }}/docs/my-docs/)
