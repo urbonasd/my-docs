@@ -1,11 +1,12 @@
 title: My Docs Site
 theme: minima
 markdown: kramdown
+baseurl: "/my-docs"
 
 collections:
   docs:
     output: true
-    permalink: /:collection/:path/
+    permalink: /:collection/:name/
 
 defaults:
   - scope:
